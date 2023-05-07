@@ -19,7 +19,7 @@
     }
 
     body {
-        margin: 1
+        margin: 0
     }
 
     a {
