@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\makeApi;
+use App\Http\Controllers\san_auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,20 @@ use App\Http\Controllers\makeApi;
 |
 */
 
-Route::middleware('auth::sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth::sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    
+
 });
 
 
 Route::get("dataApi", [makeApi::class, 'api']);
+
+Route::controller(san_auth::class)->group(function()
+{
+    Route::post("register","register");
+    Route::post("login","login");
+});
+// Route::get("the_table",[relation::class, 'the_table'])
